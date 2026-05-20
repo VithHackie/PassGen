@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+@layer base {
+  input[type="number"]::-webkit-outer-spin-button,
+  input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+}
+
+:root{
+  min-height: 100vh;
+  width: 100%;
+}
+
+.active{
+  background-color: #fb7185;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+}
