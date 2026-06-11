@@ -1,0 +1,37 @@
+services:
+  postgres:
+    image: postgres:18.4
+    container_name: postgres_database
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER : ${DBUSER}
+      POSTGRES_PASSWORD: ${DBPASSWORD}
+      POSTGRES_DB: ${DBNAME}
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DBUSER} -d ${DBNAME}"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+  backend:
+    image: passgen_backend:latest
+    container_name : passgen_backend
+    restart: unless-stopped
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    depends_on:
+      postgres:
+        condition: service_healthy
+  frontend:
+    image: passgen_frontend:latest
+    container_name: passgen_frontend
+    restart: unless-stopped
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
