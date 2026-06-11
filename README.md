@@ -109,16 +109,16 @@ docker-compose up --build
 
 **3. Access the Application**
 Once the terminal logs confirm the server is running, open your browser:
-  -Frontend UI: http://localhost:5173
-  -Backend API: http://localhost:5000
+  -Frontend UI: http://localhost:5173 <br/>
+  -Backend API: http://localhost:5000 <br/>
 
-**Container Architecture Details**
-  passgen_frontend: The Vite/React client.
-
-  passgen_backend: The Node.js/Express server. Includes a fail-safe to catch and ignore malformed decryption attempts.
-
+**Container Architecture Details**<br/>
+  passgen_frontend: The Vite/React client.<br/>
+<br/>
+  passgen_backend: The Node.js/Express server. Includes a fail-safe to catch and ignore malformed decryption attempts.<br/>
+<br/>
   postgres_database: PostgreSQL 18.4 database.
-
+<br/>
   Auto-Initialization: On the very first run, Docker automatically executes the init.sql script to create the required users table.
 
   Resetting the Database: If you ever need to completely wipe the database data and start from scratch, tear down the containers using the -v flag to destroy the hidden volume: docker-compose down -v.
