@@ -107,12 +107,12 @@ docker-compose up --build
 ```
 >(Note: The database container will perform a health check on boot. The backend server will automatically wait in a paused state until the database is fully initialized and ready to accept connections.)
 <br/>
-**3. Access the Application** <br/>
+**3. Access the Application**
 Once the terminal logs confirm the server is running, open your browser: <br/>
   -Frontend UI: http://localhost:5173 <br/>
   -Backend API: http://localhost:5000 <br/>
 <br/><br/>
-**Container Architecture Details** <br/>
+**Container Architecture Details**
   passgen_frontend: The Vite/React client.<br/>
 <br/>
   passgen_backend: The Node.js/Express server. Includes a fail-safe to catch and ignore malformed decryption attempts.<br/>
