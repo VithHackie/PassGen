@@ -58,3 +58,67 @@ You will need the following installed on your system:
 ```bash
 git clone [https://github.com/yourusername/passgen.git](https://github.com/yourusername/passgen.git)
 cd passgen
+```
+## 🐳 Running with Docker (Recommended)
+
+Passgen is fully containerized! You can spin up the entire application—frontend, backend, and the PostgreSQL database—with a single command using Docker Compose.
+
+### Prerequisites
+* [Docker](https://docs.docker.com/get-docker/) installed on your machine.
+* [Docker Compose](https://docs.docker.com/compose/install/) installed.
+
+### Quick Start
+
+**1. Configure Environment Variables**
+Ensure your `.env` file is properly set up. Because the application is running inside a Docker network, your database host must point to the database container's name, not `localhost`:
+
+```env
+DBHOST=postgres_database
+DBPORT=5432
+DBUSER=your_username
+DBPASSWORD=your_password
+DBNAME=passgenusers
+```
+## 🐳 Running with Docker (Recommended)
+
+Passgen is fully containerized! You can spin up the entire application—frontend, backend, and the PostgreSQL database—with a single command using Docker Compose.
+
+### Prerequisites
+* [Docker](https://docs.docker.com/get-docker/) installed on your machine.
+* [Docker Compose](https://docs.docker.com/compose/install/) installed.
+
+### Quick Start
+
+**1. Configure Environment Variables**
+Ensure your `.env` file is properly set up. Because the application is running inside a Docker network, your database host must point to the database container's name, not `localhost`:
+
+```env
+DBHOST=postgres_database
+DBPORT=5432
+DBUSER=krish
+DBPASSWORD=your_password
+DBNAME=passgenusers
+
+```
+**2. Build and Run**
+Open your terminal in the project root directory and run the following command to build the images and start the containers:
+```
+docker-compose up --build
+```
+>(Note: The database container will perform a health check on boot. The backend server will automatically wait in a paused state until the database is fully initialized and ready to accept connections.)
+
+**3. Access the Application**
+Once the terminal logs confirm the server is running, open your browser:
+  -Frontend UI: http://localhost:5173
+  -Backend API: http://localhost:5000
+
+**Container Architecture Details**
+  passgen_frontend: The Vite/React client.
+
+  passgen_backend: The Node.js/Express server. Includes a fail-safe to catch and ignore malformed decryption attempts.
+
+  postgres_database: PostgreSQL 18.4 database.
+
+  Auto-Initialization: On the very first run, Docker automatically executes the init.sql script to create the required users table.
+
+  Resetting the Database: If you ever need to completely wipe the database data and start from scratch, tear down the containers using the -v flag to destroy the hidden volume: docker-compose down -v.
