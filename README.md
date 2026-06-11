@@ -106,12 +106,12 @@ Open your terminal in the project root directory and run the following command t
 docker-compose up --build
 ```
 >(Note: The database container will perform a health check on boot. The backend server will automatically wait in a paused state until the database is fully initialized and ready to accept connections.)
-
-**3. Access the Application**
-Once the terminal logs confirm the server is running, open your browser:
+<br/>
+**3. Access the Application**<br/>
+Once the terminal logs confirm the server is running, open your browser: <br/>
   -Frontend UI: http://localhost:5173 <br/>
   -Backend API: http://localhost:5000 <br/>
-
+<br/><br/>
 **Container Architecture Details**<br/>
   passgen_frontend: The Vite/React client.<br/>
 <br/>
